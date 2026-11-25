@@ -197,3 +197,49 @@ th { color: var(--navy); background: var(--soft); font-weight: 600; }
   .entry-body.with-image { grid-template-columns: 1fr; }
   .entry-body.with-image figure { max-width: 420px; }
 }
+
+/* Stämme: Hälfte → Sohn → vier Stämme, geordnet untereinander */
+.clan { margin-top: clamp(32px, 5vw, 56px); }
+.clan > h2 { border-top: 2px solid var(--navy); padding-top: 14px; margin-bottom: 0; }
+.son { display: grid; grid-template-columns: minmax(8rem, 13rem) minmax(0, 1fr); gap: 8px clamp(20px, 4vw, 56px); padding: clamp(18px, 2.5vw, 28px) 0; border-bottom: 1px solid var(--line); }
+.son h3 { margin: 0; font-size: 1.3rem; }
+.tribes { list-style: none; margin: 0; padding: 0; }
+.tribes li { display: grid; grid-template-columns: minmax(7rem, 11rem) minmax(0, 1fr); gap: 2px 20px; padding: 10px 0; }
+.tribes li + li { border-top: 1px solid var(--line); }
+.tribe { color: var(--navy); font-size: 1.1rem; }
+.meaning { color: var(--ink); }
+.meta { grid-column: 2; display: flex; flex-wrap: wrap; gap: 2px 16px; font-size: 0.9rem; color: var(--muted); }
+.meta .label { font-weight: 600; color: var(--navy); }
+.tribes li:not(:has(.meaning)) .meta { grid-column: 2; grid-row: 1; }
+@media (max-width: 760px) {
+  .son { grid-template-columns: 1fr; }
+  .tribes li { grid-template-columns: 1fr; }
+  .meta, .tribes li:not(:has(.meaning)) .meta { grid-column: 1; grid-row: auto; }
+}
+
+/* Stämme: Stammbaum als Überblick (Oğuzlar → Hälften → Söhne → Stämme) */
+.overview { margin-top: clamp(24px, 4vw, 40px); }
+.tree { margin-top: 1.5rem; --tl: 24px; }
+.node { display: inline-block; padding: 8px 22px; background: var(--white); border: 2px solid var(--navy); border-radius: 6px; font: 700 1.05rem var(--display); color: var(--navy); position: relative; }
+.node-root { font-size: 1.2rem; padding: 10px 30px; background: var(--navy); color: var(--on-navy); }
+.tree-root { text-align: center; }
+.tree-root::after { content: ""; display: block; width: 2px; height: var(--tl); margin: 0 auto; background: var(--navy); }
+.tree-halves { --g: clamp(16px, 3vw, 40px); display: grid; grid-template-columns: 1fr 1fr; gap: 0 var(--g); position: relative; padding-top: var(--tl); }
+.tree-halves::before { content: ""; position: absolute; top: 0; left: calc((100% - var(--g)) / 4); right: calc((100% - var(--g)) / 4); height: 2px; background: var(--navy); }
+.half { position: relative; text-align: center; }
+.half::before { content: ""; position: absolute; top: calc(var(--tl) * -1); left: 50%; width: 2px; height: var(--tl); background: var(--navy); }
+.half > .node::after { content: ""; position: absolute; left: 50%; top: 100%; width: 2px; height: var(--tl); background: var(--navy); }
+.sons { --sg: 12px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--sg); margin-top: var(--tl); padding-top: var(--tl); position: relative; }
+.sons::before { content: ""; position: absolute; top: 0; left: calc((100% - 2 * var(--sg)) / 6); right: calc((100% - 2 * var(--sg)) / 6); height: 2px; background: var(--navy); }
+.son-col { position: relative; background: var(--soft); border: 1px solid var(--line); border-radius: 8px; padding: 12px 8px 14px; }
+.son-col::before { content: ""; position: absolute; top: calc(var(--tl) * -1); left: 50%; width: 2px; height: var(--tl); background: var(--navy); }
+.son-col h3 { margin: 0 0 8px; font-size: 1rem; font-style: italic; color: var(--red); }
+.son-col ul { list-style: none; margin: 0; padding: 0; }
+.son-col li { padding: 3px 0; color: var(--navy); font-weight: 600; }
+@media (max-width: 860px) {
+  .tree-root::after, .tree-halves::before, .half::before, .half > .node::after, .sons::before, .son-col::before { content: none; }
+  .tree-root { margin-bottom: 16px; }
+  .tree-halves { grid-template-columns: 1fr; gap: 24px; padding-top: 0; }
+  .sons { margin-top: 12px; padding-top: 0; }
+}
+@media (max-width: 520px) { .sons { grid-template-columns: 1fr 1fr 1fr; gap: 6px; } .son-col { padding: 10px 4px 12px; } .son-col li { font-size: 0.9rem; } }

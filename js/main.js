@@ -20,7 +20,7 @@
   }
   requestAnimationFrame(function () { requestAnimationFrame(function () { root.classList.add('ready'); }); });
 
-  var targets = document.querySelectorAll('main h2:not(.entry h2), main .lead, main .timeline li, .stars-text, .tile, .entry, .sultan, .table-wrap');
+  var targets = document.querySelectorAll('main h2:not(.entry h2), main .lead, main .timeline li, .stars-text, .tile, .entry, .sultan, .table-wrap, .son');
   targets.forEach(function (el) { el.classList.add('reveal'); });
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
